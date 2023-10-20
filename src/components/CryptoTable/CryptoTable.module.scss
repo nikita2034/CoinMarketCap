@@ -1,0 +1,91 @@
+.container{
+    width: auto;
+    margin-top: 20px;
+    background-color:#D0E0F3;
+    padding: 20px;
+    border-radius:10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+  
+  th, .td {
+    padding: 10px;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+.heading{
+    font-size: 26px;
+    font-weight: 600;
+    padding: 10px;
+}
+.header_block{
+    display: flex;
+    flex-direction: row;
+    gap:100px;
+    align-items:center;
+    align-self:self-start;
+    margin-bottom:50px;
+}
+.title{
+    font-size: 24px;
+    font-weight: 600;
+    align-items:center;
+    align-self:center;
+}
+.search_coins{
+    outline: none;
+    padding: 12px;
+    width: 300px;
+    border-radius:8px;
+    border: none;
+    font-size: 20px;
+}
+.icon_add{
+    width: 24px;
+    height: 24px;
+}
+
+.coin{
+    font-size: 20px;
+    font-weight: 500;
+}
+.pagination{
+    display: flex;
+    flex-direction: row;
+    gap:15px;
+}
+.button{
+    display: flex;
+    align-items:center;
+    align-self:center;
+    border:none;
+    border-radius:50%;
+    text-align: center;
+    width: 40px;
+}
+
+.modal{
+    position: fixed;
+    top: 185px;
+    right: -10px;
+    z-index: 1000;
+    width: 300px;
+    display: flex;
+}

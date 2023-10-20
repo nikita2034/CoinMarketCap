@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: rgb(132, 113, 195);
+}
+.header{
+    font-size: 22px;
+    font-weight: 600;
+    border-bottom: 1.5px solid white;
+    margin-bottom: 15px;
+}
+.price{
+    font-size: 18px;
+}
+.block_button{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.button{
+    border: none;
+    padding: 4px;
+    color: white;
+    background-color: rgb(54, 102, 102);
+    font-size: 18px;
+    width: 80px;
+    border-radius: 8px
+}
