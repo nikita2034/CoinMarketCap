@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 // import { fetchCoinDetails } from '../../api/fetchCoinDetails'; // Создайте функцию для получения данных монеты
 // import { LineChart } from './LineChart'; // Создайте компонент для графика изменения цены
-import Header from '../../components/Header/Header';
-import styles from './CurrencyInfoPage.module.scss'
-import { Coin } from '../../types/coin';
+import Header from "../../components/Header/Header";
+import styles from "./CurrencyInfoPage.module.scss";
+import { Coin } from "../../types/coin";
 
 const CoinDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [coinDetails, setCoinDetails] = useState<Coin| null>(null);
+  const [coinDetails, setCoinDetails] = useState<Coin | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,7 +22,6 @@ const CoinDetails: React.FC = () => {
     //     setLoading(false);
     //   }
     // };
-
     // fetchDetails();
   }, [id]);
 
@@ -36,9 +35,11 @@ const CoinDetails: React.FC = () => {
 
   return (
     <div>
-      <Header/>
+      <Header />
       <Link to="/">Вернуться назад</Link>
-      <h1>{coinDetails.name} ({coinDetails.symbol})</h1>
+      <h1>
+        {coinDetails.name} ({coinDetails.symbol})
+      </h1>
       <p>Rank: {coinDetails.rank}</p>
       <p>Supply: {coinDetails.supply}</p>
       <p>Max Supply: {coinDetails.maxSupply}</p>

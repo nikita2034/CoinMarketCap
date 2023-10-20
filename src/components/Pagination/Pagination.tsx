@@ -1,7 +1,5 @@
 import React from "react";
 
-function Pagination() {
-
-}
+function Pagination() {}
 
 export default Pagination;

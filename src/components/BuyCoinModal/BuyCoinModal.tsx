@@ -59,12 +59,12 @@ function BuyCoinModal({
         />
       </label>
       <div className={styles.block_button}>
-      <button className={styles.button} onClick={handleBuy}>
-        Buy
-      </button>
-      <button className={styles.button} onClick={closeModal}>
-        Cancel
-      </button>
+        <button className={styles.button} onClick={handleBuy}>
+          Buy
+        </button>
+        <button className={styles.button} onClick={closeModal}>
+          Cancel
+        </button>
       </div>
     </div>
   );

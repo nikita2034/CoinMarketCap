@@ -1,17 +1,15 @@
-import React from 'react';
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import CurrencyPage from './pages/CurrencyPage/CurrencyPage';
-import CurrencyInfoPage from './pages/CurrencyInfoPage/CurrencyInfoPage'; 
-
-// import { createContext } from "react";
+import CurrencyPage from "./pages/CurrencyPage/CurrencyPage";
+import CurrencyInfoPage from "./pages/CurrencyInfoPage/CurrencyInfoPage";
 
 function App() {
   return (
     <div className="App">
-       <Routes>
-        <Route path="/" element={<CurrencyPage/>} />
-        <Route path="/currency/:id" element={<CurrencyInfoPage/>} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<CurrencyPage />} />
+        <Route path="/currency/:id" element={<CurrencyInfoPage />} />
+      </Routes>
     </div>
   );
 }

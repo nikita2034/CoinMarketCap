@@ -9,7 +9,7 @@ import BuyCoinModal from "../BuyCoinModal/BuyCoinModal";
 import { formatLargeNumbers } from "../../utils/formatLargeNumbers";
 
 const CryptoTable: React.FC = () => {
-    const navigate=useNavigate()
+  const navigate = useNavigate();
   const [data, setData] = useState<Coin[]>([]); // Используйте конкретный тип данных вместо any
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [sortBy, setSortBy] = useState<string | null>(null); // Начально сортировка не выбрана
@@ -60,8 +60,8 @@ const CryptoTable: React.FC = () => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const openModal = (selectedСoin:Coin) => {
-    setCoin(selectedСoin)
+  const openModal = (selectedСoin: Coin) => {
+    setCoin(selectedСoin);
     setModalIsOpen(true);
   };
 
@@ -83,10 +83,9 @@ const CryptoTable: React.FC = () => {
     fetchDataFromApi();
   }, [currentPage, itemsPerPage]);
 
-  function navigateToOtherPage(id:string){
+  function navigateToOtherPage(id: string) {
     // navigate(`/currency/${id}`)
   }
-
 
   return (
     <div className={styles.container}>
@@ -107,19 +106,25 @@ const CryptoTable: React.FC = () => {
           <tr>
             {/* <th></th> */}
             <th className={styles.heading}>Name</th>
-            <th  onClick={() => handleSort("price")} className={styles.heading}>
+            <th onClick={() => handleSort("price")} className={styles.heading}>
               Price{" "}
               {sortBy === "price" && (
                 <span>{sortDirection === "asc" ? "▲" : "▼"}</span>
               )}
             </th>
-            <th onClick={() => handleSort("marketCap")} className={styles.heading}>
+            <th
+              onClick={() => handleSort("marketCap")}
+              className={styles.heading}
+            >
               Market Cap
               {sortBy === "marketCap" && (
                 <span>{sortDirection === "asc" ? "▲" : "▼"}</span>
               )}
             </th>
-            <th onClick={() => handleSort("changePercent")} className={styles.heading}>
+            <th
+              onClick={() => handleSort("changePercent")}
+              className={styles.heading}
+            >
               Volume(24h)
               {sortBy === "changePercent" && (
                 <span>{sortDirection === "asc" ? "▲" : "▼"}</span>
@@ -131,7 +136,7 @@ const CryptoTable: React.FC = () => {
         <tbody>
           {data
             ?.filter((coin) =>
-              coin.name.toLowerCase().includes(searchTerm.toLowerCase())
+              coin.name.toLowerCase().includes(searchTerm.toLowerCase()),
             )
             .slice() // Создайте копию данных перед сортировкой
             .sort((a, b) => {
@@ -145,24 +150,26 @@ const CryptoTable: React.FC = () => {
               return 0;
             })
             .map((coin: Coin) => (
-                <tr key={coin.id} onClick={()=>navigateToOtherPage(coin.id)}>
-                    
-                  <td className={styles.coin}>{coin.symbol}</td>
-                  {/* <td><img src={coin.logoUrl} alt={coin.symbol} /></td> */}
-                  <td className={styles.coin}>
-                    {formatLargeNumbers(Number(coin.priceUsd))}$
-                  </td>
-                  <td className={styles.coin}>
-                    {" "}
-                    {formatLargeNumbers(Number(coin.marketCapUsd))}$
-                  </td>
-                  <td className={styles.coin}>
-                    {formatLargeNumbers(Number(coin.volumeUsd24Hr))}%
-                  </td>
-                  <td>
-                    <CgAdd className={styles.icon_add} onClick={()=>openModal(coin)}/>
-                  </td>
-                </tr>
+              <tr key={coin.id} onClick={() => navigateToOtherPage(coin.id)}>
+                <td className={styles.coin}>{coin.symbol}</td>
+                {/* <td><img src={coin.logoUrl} alt={coin.symbol} /></td> */}
+                <td className={styles.coin}>
+                  {formatLargeNumbers(Number(coin.priceUsd))}$
+                </td>
+                <td className={styles.coin}>
+                  {" "}
+                  {formatLargeNumbers(Number(coin.marketCapUsd))}$
+                </td>
+                <td className={styles.coin}>
+                  {formatLargeNumbers(Number(coin.volumeUsd24Hr))}%
+                </td>
+                <td>
+                  <CgAdd
+                    className={styles.icon_add}
+                    onClick={() => openModal(coin)}
+                  />
+                </td>
+              </tr>
             ))}
         </tbody>
       </table>
@@ -175,7 +182,7 @@ const CryptoTable: React.FC = () => {
         >
           <GrPrevious />
         </button>
-     
+
         {pageNumbers.map((number) => (
           <button
             key={number}
@@ -192,18 +199,20 @@ const CryptoTable: React.FC = () => {
         >
           <GrNext />
         </button>
-
       </div>
 
-{modalIsOpen&&
-    <div className={styles.modal}>  <BuyCoinModal
-        isOpen={modalIsOpen}
-        closeModal={closeModal}
-        coinData={coin}
-        maxQuantity={10}
-        minQuantity={1}
-      /></div> 
-}
+      {modalIsOpen && (
+        <div className={styles.modal}>
+          {" "}
+          <BuyCoinModal
+            isOpen={modalIsOpen}
+            closeModal={closeModal}
+            coinData={coin}
+            maxQuantity={10}
+            minQuantity={1}
+          />
+        </div>
+      )}
     </div>
   );
 };
