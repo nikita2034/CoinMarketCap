@@ -72,13 +72,18 @@
     gap:15px;
 }
 .button{
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%; 
+    background-color: #007bff; 
     display: flex;
-    align-items:center;
-    align-self:center;
-    border:none;
-    border-radius:50%;
-    text-align: center;
-    width: 40px;
+    justify-content: center;
+    align-items: center;
+    color: #fff; 
+    cursor: pointer;
+    border: none;
+    outline: none; 
+    font-size: 20px;
 }
 
 .modal{

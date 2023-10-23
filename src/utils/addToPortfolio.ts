@@ -1,13 +1,21 @@
-export function addToPortfolio(coinId: string, quantity: number) {
+import { Coin } from "../types/coin";
+
+type Portfolio = {
+  coin: Coin;
+  quantity: number;
+};
+
+export function addToPortfolio(coin: Coin, quantity: number) {
   const portfolio = JSON.parse(localStorage.getItem("portfolio") || "[]");
 
-  const existingCoin = portfolio.find((coin: any) => coin.coinId === coinId);
-
-  if (existingCoin) {
-    existingCoin.quantity += quantity;
+  const existingCoin = portfolio.findIndex(
+    (portfolioCoin: Portfolio) => portfolioCoin.coin.id === coin.id
+  );
+  if (existingCoin !== -1) {
+    portfolio[existingCoin].quantity += quantity;
   } else {
-    portfolio.push({ coinId, quantity });
+    portfolio.push({ coin, quantity });
   }
-
   localStorage.setItem("portfolio", JSON.stringify(portfolio));
+  
 }

@@ -7,8 +7,9 @@ import styles from "./CryptoTable.module.scss";
 import { Coin } from "../../types/coin";
 import BuyCoinModal from "../BuyCoinModal/BuyCoinModal";
 import { formatLargeNumbers } from "../../utils/formatLargeNumbers";
-
+import { useMyContext } from "../../context/Context";
 const CryptoTable: React.FC = () => {
+  const {  setValue } = useMyContext();
   const navigate = useNavigate();
   const [data, setData] = useState<Coin[]>([]); // Используйте конкретный тип данных вместо any
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -21,6 +22,7 @@ const CryptoTable: React.FC = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentData = data.slice(indexOfFirstItem, indexOfLastItem);
+
   const pageNumbers = [];
   console.log(data);
   for (let i = 1; i <= Math.ceil(100 / itemsPerPage); i++) {
@@ -58,10 +60,17 @@ const CryptoTable: React.FC = () => {
     }
   }
 
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const openModal = (selectedСoin: Coin) => {
+  const openModal = (selectedСoin: Coin,event:React.MouseEvent<SVGElement>) => {
     setCoin(selectedСoin);
+    event.stopPropagation(); 
     setModalIsOpen(true);
   };
 
@@ -74,7 +83,7 @@ const CryptoTable: React.FC = () => {
       try {
         const result = await fetchData(currentPage, itemsPerPage);
         setData(result);
-        console.log(result);
+        setValue(result)
       } catch (error) {
         console.error("Ошибка при получении данных:", error);
       }
@@ -84,7 +93,7 @@ const CryptoTable: React.FC = () => {
   }, [currentPage, itemsPerPage]);
 
   function navigateToOtherPage(id: string) {
-    // navigate(`/currency/${id}`)
+    navigate(`/currency/${id}`);
   }
 
   return (
@@ -104,7 +113,7 @@ const CryptoTable: React.FC = () => {
       <table className={styles.table}>
         <thead>
           <tr>
-            {/* <th></th> */}
+            <th></th>
             <th className={styles.heading}>Name</th>
             <th onClick={() => handleSort("price")} className={styles.heading}>
               Price{" "}
@@ -130,13 +139,12 @@ const CryptoTable: React.FC = () => {
                 <span>{sortDirection === "asc" ? "▲" : "▼"}</span>
               )}
             </th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
           {data
             ?.filter((coin) =>
-              coin.name.toLowerCase().includes(searchTerm.toLowerCase()),
+              coin.name.toLowerCase().includes(searchTerm.toLowerCase())
             )
             .slice() // Создайте копию данных перед сортировкой
             .sort((a, b) => {
@@ -150,26 +158,28 @@ const CryptoTable: React.FC = () => {
               return 0;
             })
             .map((coin: Coin) => (
-              <tr key={coin.id} onClick={() => navigateToOtherPage(coin.id)}>
-                <td className={styles.coin}>{coin.symbol}</td>
-                {/* <td><img src={coin.logoUrl} alt={coin.symbol} /></td> */}
-                <td className={styles.coin}>
-                  {formatLargeNumbers(Number(coin.priceUsd))}$
-                </td>
-                <td className={styles.coin}>
-                  {" "}
-                  {formatLargeNumbers(Number(coin.marketCapUsd))}$
-                </td>
-                <td className={styles.coin}>
-                  {formatLargeNumbers(Number(coin.volumeUsd24Hr))}%
-                </td>
-                <td>
+              <>
+                 
+              <tr key={coin.id} >
+              <td>
                   <CgAdd
                     className={styles.icon_add}
-                    onClick={() => openModal(coin)}
+                    onClick={(event) => openModal(coin,event)}
                   />
                 </td>
-              </tr>
+                <td className={styles.coin} onClick={() => navigateToOtherPage(coin.id)}>{coin.symbol}</td>
+                {/* <td><img src={coin.logoUrl} alt={coin.symbol} /></td> */}
+                <td className={styles.coin} onClick={() => navigateToOtherPage(coin.id)}>
+                  {formatLargeNumbers(Number(coin.priceUsd))}$
+                </td>
+                <td className={styles.coin} onClick={() => navigateToOtherPage(coin.id)}>
+                  {formatLargeNumbers(Number(coin.marketCapUsd))}$
+                </td>
+                <td className={styles.coin} onClick={() => navigateToOtherPage(coin.id)}>
+                  {formatLargeNumbers(Number(coin.volumeUsd24Hr))}%
+                </td></tr>
+           
+              </>
             ))}
         </tbody>
       </table>
@@ -203,13 +213,13 @@ const CryptoTable: React.FC = () => {
 
       {modalIsOpen && (
         <div className={styles.modal}>
-          {" "}
           <BuyCoinModal
             isOpen={modalIsOpen}
             closeModal={closeModal}
             coinData={coin}
             maxQuantity={10}
             minQuantity={1}
+            handleOverlayClick={handleOverlayClick}
           />
         </div>
       )}

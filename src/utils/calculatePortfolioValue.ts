@@ -1,22 +1,30 @@
-export function calculatePortfolioValue(apiData: any) {
+import { formatLargeNumbers } from "./formatLargeNumbers";
+import { fetchCoinDataById } from "../api/fetchData";
+
+export async function calculatePortfolioValue(): Promise<string> {
   const portfolio = JSON.parse(localStorage.getItem("portfolio") || "[]");
+  let totalValue = 0;
+  let initialValue = 0;
 
-  let portfolioValue = 0;
-  let portfolioDifference = 0;
+  for (const portfolioItem of portfolio) {
+    const coin = portfolioItem.coin;
+    const quantity = portfolioItem.quantity;
+    const coinValue = coin.priceUsd * quantity;
+    initialValue += coinValue;
+    const currentPriceData = await fetchCoinDataById(coin.id);
 
-  portfolio.forEach((item: any) => {
-    const coin = apiData.find((coinData: any) => coinData.id === item.coinId);
-
-    if (coin) {
-      const coinPrice = coin.priceUsd;
-      const quantity = item.quantity;
-      const currentCoinValue = coinPrice * quantity;
-      portfolioValue += currentCoinValue;
-
-      const initialCoinValue = coinPrice * quantity;
-      portfolioDifference += currentCoinValue - initialCoinValue;
+    if (currentPriceData && currentPriceData.priceUsd) {
+      const currentPrice = currentPriceData.priceUsd;
+      const coinValue = currentPrice * quantity;
+      totalValue += coinValue;
     }
-  });
+  }
+  const difference = totalValue - initialValue;
+  const percentageDifference = ((difference / totalValue) * 100).toFixed(2);
 
-  return { portfolioValue, portfolioDifference };
+  const result = `${formatLargeNumbers(totalValue)} USD (${
+    difference > 0 ? "+" : "-"
+  } ${percentageDifference}%)`;
+
+  return result;
 }
