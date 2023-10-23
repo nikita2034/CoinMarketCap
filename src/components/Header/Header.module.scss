@@ -51,16 +51,17 @@
     border-radius: 8px;
     display: flex;
     flex-direction: row;
-    gap:15px
+    gap:15px;
+    &:hover{
+        background-color:rgb(73, 73, 205);
+    }
 }
 .icon_briefcase{
     width: 25px;
     height: 25px;
 }
 
-
-  
-  .overlay {
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -68,4 +69,94 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
-  }
+}
+@media (max-width: 1080px) {
+    .popular_cryptocurrency{
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media (max-width: 870px) {
+    .popular_cryptocurrency_title{
+        font-size: 14px;
+    }
+    .popular_cryptocurrency_price{
+        font-size: 14px;
+    }
+}
+@media (max-width: 800px) {
+    .briefcase{
+        flex-direction: column;
+        align-items:center;
+    }
+    .price{
+        font-size: 14px;
+    }
+}
+@media (max-width: 757px) {
+    .title{
+        font-size: 24px;
+    }
+    .popular_cryptocurrencies{
+        gap:20px;
+    }
+}
+@media (max-width: 720px) {
+    .title{
+        font-size: 20px;
+    }
+    .popular_cryptocurrencies{
+        gap:15px;
+    }
+}
+@media (max-width: 678px) {
+    .title{
+        font-size: 18px;
+    }
+    .popular_cryptocurrencies{
+        gap:13px;
+    }
+    .popular_cryptocurrency_title{
+        font-size: 12px;
+    }
+    .popular_cryptocurrency_price{
+        font-size: 12px;
+    }
+}
+@media (max-width: 670px) {
+    .title{
+        display: none;
+    }
+}
+@media (max-width: 518px) {
+    .price{
+        font-size: 12px;
+    }
+}
+ @media (max-width: 470px) {
+    .popular_cryptocurrencies{
+        gap:8px;
+    }
+    .container{
+        padding: 0 20px 0 20px;
+    }
+}
+@media (max-width: 440px) {
+    .container{
+        padding: 0 10px 0 10px;
+    }
+}
+@media (max-width: 416px) {
+    .container{
+        padding: 0 5px 0 5px;
+    }
+    .logo{
+        height: 40px;
+    }
+    .popular_cryptocurrency_title{
+        font-size: 10px;
+    }
+    .popular_cryptocurrency_price{
+        font-size: 10px;
+    }
+}

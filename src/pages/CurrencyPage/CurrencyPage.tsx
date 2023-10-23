@@ -1,4 +1,4 @@
-import React from "react";
+
 import CryptoTable from "../../components/CryptoTable/CryptoTable";
 import Header from "../../components/Header/Header";
 import styles from "./CurrencyPage.module.scss";

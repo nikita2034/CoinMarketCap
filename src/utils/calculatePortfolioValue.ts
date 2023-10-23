@@ -5,6 +5,7 @@ export async function calculatePortfolioValue(): Promise<string> {
   const portfolio = JSON.parse(localStorage.getItem("portfolio") || "[]");
   let totalValue = 0;
   let initialValue = 0;
+  let percentageDifference = 0;
 
   for (const portfolioItem of portfolio) {
     const coin = portfolioItem.coin;
@@ -20,10 +21,12 @@ export async function calculatePortfolioValue(): Promise<string> {
     }
   }
   const difference = totalValue - initialValue;
-  const percentageDifference = ((difference / totalValue) * 100).toFixed(2);
 
-  const result = `${formatLargeNumbers(totalValue)} USD (${
-    difference > 0 ? "+" : "-"
+  if (difference !== 0) {
+    percentageDifference = Number(((difference / totalValue) * 100).toFixed(2));
+  }
+  const result = `${formatLargeNumbers(initialValue)} USD (${
+    difference > 0 ? "+" : ""
   } ${percentageDifference}%)`;
 
   return result;

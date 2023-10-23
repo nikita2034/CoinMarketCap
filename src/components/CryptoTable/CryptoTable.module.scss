@@ -4,12 +4,10 @@
     background-color:#D0E0F3;
     padding: 20px;
     border-radius:10px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .table {
@@ -60,30 +58,15 @@
 .icon_add{
     width: 24px;
     height: 24px;
+    color:#2361a4;
+    &:hover{
+        color:#96b7da;
+    }
 }
 
 .coin{
     font-size: 20px;
     font-weight: 500;
-}
-.pagination{
-    display: flex;
-    flex-direction: row;
-    gap:15px;
-}
-.button{
-    width: 40px; 
-    height: 40px;
-    border-radius: 50%; 
-    background-color: #007bff; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff; 
-    cursor: pointer;
-    border: none;
-    outline: none; 
-    font-size: 20px;
 }
 
 .modal{
@@ -94,3 +77,84 @@
     width: 300px;
     display: flex;
 }
+
+@media (max-width: 750px) {
+    .header_block{
+        flex-direction: column;
+        align-items:start;
+        gap:25px;
+    }
+}
+@media (max-width: 470px) {
+    .title{
+        font-size: 20px;
+    }
+    .search_coins{
+        width: 250px;
+    }
+}
+@media (max-width: 430px) {
+    .title{
+        font-size: 18px;
+    }
+    .search_coins{
+        width: 220px;
+    }
+}
+@media (max-width: 395px) {
+    .title{
+        font-size: 16px;
+    }
+    .search_coins{
+        width: 200px;
+    }
+}
+
+@media (max-width: 575px) {
+ .heading{
+    font-size: 22px;
+    }
+    .coin{
+        font-size:18px;
+    }
+}
+@media (max-width: 520px) {
+    .heading{
+       font-size: 18px;
+    }
+    .coin{
+        font-size:16px;
+    }
+}
+@media (max-width: 465px) {
+    .heading{
+        font-size: 16px;
+    }
+    .coin{
+        font-size:15px;
+    }
+}
+@media (max-width: 440px) {
+    .heading{
+        font-size: 14px;
+    }
+    .coin{
+        font-size:12px;
+    }
+}
+@media (max-width: 400px) {
+    .heading{
+        font-size: 12px;
+    }
+    .coin{
+        font-size:10px;
+    }
+}      
+@media (max-width: 380px) {
+    .heading{
+        font-size: 10px;
+    }
+    .coin{
+        font-size:8px;
+    }
+}     

@@ -17,5 +17,4 @@ export function addToPortfolio(coin: Coin, quantity: number) {
     portfolio.push({ coin, quantity });
   }
   localStorage.setItem("portfolio", JSON.stringify(portfolio));
-  
 }

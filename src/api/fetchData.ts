@@ -69,7 +69,6 @@ export const getAssetPriceHistory = async (id: string, interval: string) => {
     );
     return response.data.data;
   } catch (error) {
-    
     console.error(`Ошибка при получении истории цены монеты:${id}`, error);
     throw error;
   }

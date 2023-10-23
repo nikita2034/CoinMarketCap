@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Header.module.scss";
+import { useNavigate } from "react-router-dom";
 import { BsBriefcaseFill } from "react-icons/bs";
 import { fetchData } from "../../api/fetchData";
 import { Coin } from "../../types/coin";
 import { formatLargeNumbers } from "../../utils/formatLargeNumbers";
 import { calculatePortfolioValue } from "../../utils/calculatePortfolioValue";
 import Portfolio from "../Portfolio/Portfolio";
+import { useMyContext } from "../../context/Context";
 
 function Header() {
+  const { value } = useMyContext();
   const [popularCurrencies, setPopularCurrencies] = useState<Coin[]>([]);
   const [portfolioValue, setPortfolioValue] = useState<string>("Loading...");
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
         const result = await fetchData(1, 3);
         setPopularCurrencies(result);
       } catch (error) {
-        console.error("Ошибка при получении данных:", error);
+        navigate("/error");
       }
     };
 
     fetchDataFromApi();
     calculatePortfolioValue().then((value) => setPortfolioValue(value));
-  }, []);
+  }, [value]);
 
   const [modalOpen, setModalOpen] = useState(false);
 

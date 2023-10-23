@@ -1,0 +1,86 @@
+.pagination{
+    display: flex;
+    flex-direction: row;
+    gap:15px;
+}
+.button{
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%; 
+    background-color: #007bff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff; 
+    cursor: pointer;
+    border: none;
+    outline: none; 
+    font-size: 20px;
+    &:hover{
+        background-color: #82b6ed; 
+    }
+}
+.active{
+    background-color:#04458b;
+}
+.icon{
+    width: 20px;
+    height:20px;
+}
+
+@media (max-width: 870px) {
+    .button{
+        width: 30px; 
+        height: 30px;
+        font-size: 16px;
+    }
+}
+@media (max-width: 670px) {
+    .button{
+        width: 25px; 
+        height: 25px;
+        font-size: 14px;
+    }
+}
+@media (max-width: 620px) {
+    .button{
+        width: 20px; 
+        height: 20px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 520px) {
+    .button{
+        width: 16px; 
+        height: 16px;
+        font-size: 10px;
+    }
+    .icon{
+        width: 16px;
+        height:16px;
+    }
+}
+@media (max-width: 480px) {
+    .button{
+        width: 14px; 
+        height: 14px;
+        font-size: 10px;
+    }
+}
+@media (max-width: 450px) {
+    .button{
+        width: 12px; 
+        height: 12px;
+        font-size: 10px;
+    }
+    .pagination{
+        gap:10px;
+    }
+}
+@media (max-width: 430px) {
+    .button{
+        width: 10px; 
+        height: 10px;
+        font-size: 8px;
+    }
+}

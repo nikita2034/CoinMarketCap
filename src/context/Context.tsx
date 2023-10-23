@@ -1,20 +1,20 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
-// Определите тип для вашего контекста
 type MyContextType = {
   value: string;
   setValue: (value: string) => void;
 };
 
-// Создайте контекст
 const MyContext = createContext<MyContextType | undefined>(undefined);
 
 type MyContextProviderProps = {
   children: ReactNode;
 };
 
-export const MyContextProvider: React.FC<MyContextProviderProps> = ({ children }) => {
-  const [value, setValue] = useState('Initial Value');
+export const MyContextProvider: React.FC<MyContextProviderProps> = ({
+  children,
+}) => {
+  const [value, setValue] = useState("Initial Value");
 
   return (
     <MyContext.Provider value={{ value, setValue }}>
@@ -23,11 +23,10 @@ export const MyContextProvider: React.FC<MyContextProviderProps> = ({ children }
   );
 };
 
-// Создайте кастомный хук для более удобного доступа к контексту
 export const useMyContext = () => {
   const context = useContext(MyContext);
   if (context === undefined) {
-    throw new Error('useMyContext must be used within a MyContextProvider');
+    throw new Error("useMyContext must be used within a MyContextProvider");
   }
   return context;
 };
